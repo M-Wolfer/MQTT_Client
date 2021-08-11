@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MQTT_Client.Data;
+using MQTT_Client.ViewModels;
+
 
 namespace MQTT_Client
 {
@@ -28,6 +30,7 @@ namespace MQTT_Client
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<IMQTTViewModel, MQTTBasicViewModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
