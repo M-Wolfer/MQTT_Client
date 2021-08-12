@@ -8,7 +8,7 @@ using MQTT_Client.ViewModels;
 
 namespace MQTT_Client.ViewModels
 {
-    public abstract class MQTTBasicViewModel : INotifyPropertyChanged, IMQTTViewModel
+    public class MQTTBasicViewModel : INotifyPropertyChanged, IMQTTViewModel
     {
         private bool isBusy = false;
         public bool IsBusy

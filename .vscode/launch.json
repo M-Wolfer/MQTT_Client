@@ -11,7 +11,7 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/MQTT_Client/bin/Debug/net5.0/MQTT_Client.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/MQTT_Client",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
