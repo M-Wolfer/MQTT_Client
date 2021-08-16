@@ -10,18 +10,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MQTT_Client.Data;
 using MQTT_Client.ViewModels;
-
+using MQTTnet.Client;
 
 namespace MQTT_Client
 {
     public class Startup
     {
+        public IMqttClient clientX;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
 
             //create Client and connect
-            MQTT_Client.Models.MQTT_Client_Connect client = new MQTT_Client.Models.MQTT_Client_Connect();
+            MQTT_Client.Models.MQTT_Client_Connect clientObj = new MQTT_Client.Models.MQTT_Client_Connect();
+            clientX = clientObj.GetMyClient();
         }
 
         public IConfiguration Configuration { get; }
@@ -57,6 +59,11 @@ namespace MQTT_Client
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+        }
+
+        public IMqttClient GetMaClient()
+        {
+            return clientX;
         }
     }
 }

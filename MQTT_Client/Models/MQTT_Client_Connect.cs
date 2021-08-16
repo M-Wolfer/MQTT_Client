@@ -34,5 +34,10 @@ namespace MQTT_Client.Models
         {
             client.ConnectAsync(options, CancellationToken.None);
         }
+
+        public IMqttClient GetMyClient()
+        {
+            return client;
+        }
     }
 }
