@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel;
-
 namespace MQTT_Client.ViewModels
 {
     public interface IMQTTViewModel

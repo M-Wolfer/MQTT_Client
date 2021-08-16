@@ -19,6 +19,9 @@ namespace MQTT_Client
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            //create Client and connect
+            MQTT_Client.Models.MQTT_Client_Connect client = new MQTT_Client.Models.MQTT_Client_Connect();
         }
 
         public IConfiguration Configuration { get; }
