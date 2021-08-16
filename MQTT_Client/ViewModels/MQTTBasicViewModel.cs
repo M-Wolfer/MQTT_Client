@@ -46,7 +46,6 @@ namespace MQTT_Client.ViewModels
         {
             
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
