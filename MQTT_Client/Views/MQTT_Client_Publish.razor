@@ -1,21 +1,65 @@
 @page "/mqttpub"
 
+@using System.ComponentModel
+@using ViewModels
+@inject IMQTTViewModel ViewModel;
+
+@implements IDisposable
+
 <b>@DateTime.Now</b>
 <p></p>
 
 <h1>MQTT Client Publish</h1>
 
 <p></p>
+<p>
+    <input @bind="inputValue" />
+</p>
+
+<p>
+    <input @bind="InputValue" />
+</p>
+
+<ul>
+    <li><code>inputValue</code>: @msg</li>
+    <li><code>InputValue</code>: @tpc</li>
+</ul>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+    private string msg="message", tpc="topic";
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        ViewModel.PropertyChanged += async (sender, e) => {
+            await InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
+        };
+        await base.OnInitializedAsync();
+    }
+
+    async void OnPropertyChangedHandler(object sender, PropertyChangedEventArgs e)
+    {
+        await InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+    
+    public void Dispose()
+    {
+        ViewModel.PropertyChanged -= OnPropertyChangedHandler;
     }
 }
