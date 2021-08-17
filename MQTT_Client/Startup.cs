@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MQTT_Client.Data;
 using MQTT_Client.ViewModels;
 using MQTTnet.Client;
 
@@ -34,7 +33,7 @@ namespace MQTT_Client
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            //services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<IMQTTViewModel, MQTTBasicViewModel>();
         }
 
