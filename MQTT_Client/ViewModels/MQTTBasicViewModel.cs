@@ -38,6 +38,56 @@ namespace MQTT_Client.ViewModels
                 OnPropertyChanged();
             }
         }
+        
+        //creates 2 dimensional string Buffer
+        // 1. Dimension = Topic
+        // 2. Dimension = Message
+        public IDictionary<string, string> buffer = new Dictionary<string, string>();
+        public void InitBuffer()
+        {
+            buffer.Add("TopicFill", "MessageFill");
+        }
+        
+        public void FillBuffer (string Topic, string Message)
+        {
+            buffer[Topic] = Message;
+            /*
+            try
+            {
+                buffer.Add(Topic, Message);
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("An element with Topic = " + Topic + " already exists.");
+            }
+            */
+        }
+
+        public string ReadBuffer(string Topic)
+        {
+            string message = "";
+            if (buffer.TryGetValue(Topic, out message))
+            {
+                Console.WriteLine("For Topic = " + Topic + ", Message = {0}", message);
+            }
+            else
+            {
+                Console.WriteLine("Topic = " + Topic + " is not found.");
+            }
+            return message;
+
+            /*
+            string message = "";
+            try{
+                    message = buffer[Topic];
+            } catch(KeyNotFoundException){
+                Console.WriteLine("Key = " + Topic + " is not found.");
+            }
+
+            return message;
+            */
+        }
+
         public void SubscribeTopic(string Topic)
         {
 
