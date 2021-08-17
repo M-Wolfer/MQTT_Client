@@ -92,10 +92,27 @@ namespace MQTT_Client.ViewModels
         {
 
         }
-        public void PublishMessage()
+       /* public void PublishMessage(object sender, DoWorkEventArgs e)
         {
-            
+            client = MQTT_Client_Publish.ViewModels.GetMyClient();
+
+            if (client.IsConnected == false)
+            {
+                client.ConnectAsync(options, CancellationToken.None);
+                Console.WriteLine("Client Reconnect!");
+            }
+
+            var message = new MqttApplicationMessageBuilder()
+                .WithTopic("test")
+                .WithPayload("test")
+                .WithExactlyOnceQoS()
+                .WithRetainFlag()
+                .Build();
+
+            client.PublishAsync(message, CancellationToken.None);
         }
+            
+        }*/
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -108,6 +125,11 @@ namespace MQTT_Client.ViewModels
             if (EqualityComparer<T>.Default.Equals(backingFiled, value)) return;
             backingFiled = value;
             OnPropertyChanged(propertyName);
+        }
+
+        public void PublishMessage()
+        {
+            
         }
     }
 }

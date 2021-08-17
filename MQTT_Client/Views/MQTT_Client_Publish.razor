@@ -23,18 +23,14 @@
 </p>
 
 <ul>
-    <li><code>Message</code>: @ViewModelInject.Message</li>
     <li><code>Topic</code>: @ViewModelInject.Topic</li>
+    <li><code>Message</code>: @ViewModelInject.Message</li>
 </ul>
 
 <button class="btn btn-primary" @onclick="ViewModelInject.PublishMessage">Publish</button>
 
 @code {
 
-        public void PublishMessage()
-        {
-            
-        }
     protected override async Task OnInitializedAsync()
     {
         ViewModelInject.PropertyChanged += async (sender, e) => {
