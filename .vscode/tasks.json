@@ -37,6 +37,13 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "eslint",
+            "problemMatcher": [
+                "$eslint-stylish"
+            ],
+            "label": "eslint: lint whole folder"
         }
     ]
 }
