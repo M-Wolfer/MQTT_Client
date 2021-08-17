@@ -2,7 +2,7 @@
 
 @using System.ComponentModel
 @using ViewModels
-@inject IMQTTViewModel ViewModel;
+@inject IMQTTViewModel ViewModelInject;
 
 @implements IDisposable
 
@@ -12,34 +12,32 @@
 <p>
     <label>
         Topic: <tab></tab>
-        <input @bind="ViewModel.Topic" />
+        <input @bind="ViewModelInject.Topic" />
     </label>
 </p>
 <p>
     <label>
         Message:
-        <input @bind="ViewModel.Message" />
+        <input @bind="ViewModelInject.Message" />
     </label>
 </p>
 
 <ul>
-    <li><code>Message</code>: @ViewModel.Message</li>
-    <li><code>Topic</code>: @ViewModel.Topic</li>
+    <li><code>Message</code>: @ViewModelInject.Message</li>
+    <li><code>Topic</code>: @ViewModelInject.Topic</li>
 </ul>
 
-<button class="btn btn-primary" @onclick="ViewModel.PublishMessage">Publish</button>
+<button class="btn btn-primary" @onclick="ViewModelInject.PublishMessage">Publish</button>
 
 @code {
-    //private string msg="msg", tpc="tpc";
-    private int currentCount = 0;
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
+        public void PublishMessage()
+        {
+            
+        }
     protected override async Task OnInitializedAsync()
     {
-        ViewModel.PropertyChanged += async (sender, e) => {
+        ViewModelInject.PropertyChanged += async (sender, e) => {
             await InvokeAsync(() =>
             {
                 StateHasChanged();
@@ -58,6 +56,6 @@
     
     public void Dispose()
     {
-        ViewModel.PropertyChanged -= OnPropertyChangedHandler;
+        ViewModelInject.PropertyChanged -= OnPropertyChangedHandler;
     }
 }

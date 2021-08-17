@@ -10,8 +10,11 @@ namespace MQTT_Client.ViewModels
 
         event PropertyChangedEventHandler PropertyChanged;
 
+        string ReadBuffer(string Topic);
+        void FillBuffer(string Topic, string Message);
+        void InitBuffer();
         void SubscribeTopic(string Topic);
-        void PublishMessage(string Topic, string Message);
+        void PublishMessage();
 
     }
 }

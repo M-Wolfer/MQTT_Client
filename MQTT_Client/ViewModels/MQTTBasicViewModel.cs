@@ -92,7 +92,7 @@ namespace MQTT_Client.ViewModels
         {
 
         }
-        public void PublishMessage(string Topic, string Message)
+        public void PublishMessage()
         {
             
         }
