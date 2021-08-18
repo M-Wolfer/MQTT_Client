@@ -21,8 +21,8 @@ namespace MQTT_Client
             Configuration = configuration;
 
             //create Client and connect
-            MQTT_Client.Models.MQTT_Client_Connect clientObj = new MQTT_Client.Models.MQTT_Client_Connect();
-            clientX = clientObj.GetMyClient();
+          //  MQTT_Client.Models.MQTT_Client_Connect clientObj = new MQTT_Client.Models.MQTT_Client_Connect();
+            //clientX = clientObj.GetMyClient();
         }
 
         public IConfiguration Configuration { get; }

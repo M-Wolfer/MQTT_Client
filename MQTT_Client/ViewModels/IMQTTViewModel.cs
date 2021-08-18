@@ -9,6 +9,7 @@ namespace MQTT_Client.ViewModels
         string Message { get; set; }
 
         event PropertyChangedEventHandler PropertyChanged;
+        void Connect(object sender, DoWorkEventArgs e);
         void Pub(object sender, DoWorkEventArgs e);
         void Sub(object sender, DoWorkEventArgs e);
         void ClientPublish();

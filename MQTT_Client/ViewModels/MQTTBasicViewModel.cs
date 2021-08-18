@@ -18,8 +18,31 @@ namespace MQTT_Client.ViewModels
     {
         IMqttClient client;
         IMqttClientOptions options;    
-        BackgroundWorker pub, sub;
+        IMqttFactory mqttFactory;
+        BackgroundWorker thread, pub, sub;
         private bool isBusy = false;
+        public MQTTBasicViewModel()
+        {
+            //create client
+            mqttFactory = new MqttFactory();
+            client = mqttFactory.CreateMqttClient();
+
+            //define options
+            options = new MqttClientOptionsBuilder()
+            //.WithTcpServer("10.10.21.116", 1883) // Port is optional
+            //.WithTcpServer("localhost", 1883) // LOCALHOST
+            .WithTcpServer("192.168.178.117", 1883) // HO
+            .Build();
+
+            //Create a BGW object and use its eventhandler to connect mqtt client
+            thread = new BackgroundWorker();
+            thread.RunWorkerAsync();
+            thread.DoWork += Connect;
+        }
+        public void Connect(object sender, DoWorkEventArgs e)
+        {
+            client.ConnectAsync(options, CancellationToken.None);
+        }
         public bool IsBusy
         {
             get => isBusy;
@@ -62,11 +85,7 @@ namespace MQTT_Client.ViewModels
             sub.DoWork += Sub;
         }
         public void Pub(object sender, DoWorkEventArgs e)
-        {
-            MQTT_Client_Connect clientConnecter = new MQTT_Client_Connect();
-            client = clientConnecter.GetMyClient();
-            options = clientConnecter.GetMyOptions();
-            
+        {            
             if (client.IsConnected == false)
             {
                 client.ConnectAsync(options, CancellationToken.None);
@@ -80,6 +99,7 @@ namespace MQTT_Client.ViewModels
                 .WithRetainFlag()
                 .Build();
 
+            System.Console.WriteLine(message);
             client.PublishAsync(message, CancellationToken.None);
         }
         public void Sub(object sender, DoWorkEventArgs e)

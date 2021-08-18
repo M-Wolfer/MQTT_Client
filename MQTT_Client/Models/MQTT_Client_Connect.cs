@@ -36,6 +36,11 @@ namespace MQTT_Client.Models
             client.ConnectAsync(options, CancellationToken.None);
         }
 
+        public void GetConnection()
+        {
+            thread.DoWork += Connect;
+        }
+
         public IMqttClient GetMyClient()
         {
             return client;
