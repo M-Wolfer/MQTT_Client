@@ -108,8 +108,6 @@ namespace MQTT_Client.ViewModels
             pub = new BackgroundWorker();
             pub.RunWorkerAsync();
             pub.DoWork += Pub;
-
-
         }
         public void Pub(object sender, DoWorkEventArgs e)
         {
@@ -145,11 +143,6 @@ namespace MQTT_Client.ViewModels
             if (EqualityComparer<T>.Default.Equals(backingFiled, value)) return;
             backingFiled = value;
             OnPropertyChanged(propertyName);
-        }
-
-        public void PublishMessage()
-        {
-            throw new NotImplementedException();
         }
     }
 }
