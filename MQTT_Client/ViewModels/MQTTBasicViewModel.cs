@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
+using MQTT_Client.Models;
 using MQTT_Client.ViewModels;
+using MQTTnet;
+using MQTTnet.Client;
+using MQTTnet.Client.Options;
 
 namespace MQTT_Client.ViewModels
 {
     public class MQTTBasicViewModel : INotifyPropertyChanged, IMQTTViewModel
     {
+        IMqttClient client;
+        IMqttClientOptions options;    
+        BackgroundWorker pub, sub;
         private bool isBusy = false;
         public bool IsBusy
         {
@@ -90,12 +98,24 @@ namespace MQTT_Client.ViewModels
 
         public void SubscribeTopic(string Topic)
         {
+           
 
         }
-       /* public void PublishMessage(object sender, DoWorkEventArgs e)
+        public void ClientPublish()
         {
-            client = MQTT_Client_Publish.ViewModels.GetMyClient();
+            //Create a BGW object and use its eventhandler to sub on mqtt client
+            pub = new BackgroundWorker();
+            pub.RunWorkerAsync();
+            pub.DoWork += Pub;
 
+
+        }
+        public void Pub(object sender, DoWorkEventArgs e)
+        {
+            MQTT_Client_Connect clientConnecter = new MQTT_Client_Connect();
+            client = clientConnecter.GetMyClient();
+            options = clientConnecter.GetMyOptions();
+            
             if (client.IsConnected == false)
             {
                 client.ConnectAsync(options, CancellationToken.None);
@@ -112,7 +132,6 @@ namespace MQTT_Client.ViewModels
             client.PublishAsync(message, CancellationToken.None);
         }
             
-        }*/
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -129,7 +148,7 @@ namespace MQTT_Client.ViewModels
 
         public void PublishMessage()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

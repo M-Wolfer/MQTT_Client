@@ -39,5 +39,9 @@ namespace MQTT_Client.Models
         {
             return client;
         }
+        public IMqttClientOptions GetMyOptions()
+        {
+            return options;
+        }
     }
 }
