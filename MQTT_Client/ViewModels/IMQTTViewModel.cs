@@ -14,7 +14,6 @@ namespace MQTT_Client.ViewModels
         void FillBuffer(string Topic, string Message);
         void InitBuffer();
         void SubscribeTopic(string Topic);
-        void PublishMessage();
         void ClientPublish();
     }
 }
