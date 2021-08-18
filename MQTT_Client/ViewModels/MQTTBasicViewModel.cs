@@ -17,7 +17,8 @@ namespace MQTT_Client.ViewModels
     {
         IMqttClient client;
         IMqttClientOptions options;    
-        BackgroundWorker pub, sub;
+        BackgroundWorker pub;
+        //BackgroundWorker sub;
         private bool isBusy = false;
         public bool IsBusy
         {
@@ -123,8 +124,8 @@ namespace MQTT_Client.ViewModels
             }
 
             var message = new MqttApplicationMessageBuilder()
-                .WithTopic("test")
-                .WithPayload("test")
+                .WithTopic(Topic)
+                .WithPayload(Message)
                 .WithExactlyOnceQoS()
                 .WithRetainFlag()
                 .Build();
