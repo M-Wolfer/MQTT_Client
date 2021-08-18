@@ -1,0 +1,55 @@
+@page "/mqttsub"
+
+@using System.ComponentModel
+@using ViewModels
+@inject IMQTTViewModel ViewModelInject;
+@implements IDisposable
+
+<h1>Subscribe</h1>
+
+<p></p>
+<p>
+    <label>
+        Topic: <tab></tab>
+        <input @bind="ViewModelInject.Topic" />
+    </label>
+</p>
+<p>
+    <label>
+        Message:
+        <input @bind="ViewModelInject.Message" />
+    </label>
+</p>
+
+<ul>
+    <li><code>Topic</code>: @ViewModelInject.Topic</li>
+    <li><code>Message</code>: @ViewModelInject.Message</li>
+</ul>
+
+<button class="btn btn-primary" @onclick="ViewModelInject.ClientSubscribe">Subscribe</button>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        ViewModelInject.PropertyChanged += async (sender, e) => {
+            await InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
+        };
+        await base.OnInitializedAsync();
+    }
+
+    async void OnPropertyChangedHandler(object sender, PropertyChangedEventArgs e)
+    {
+        await InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        ViewModelInject.PropertyChanged -= OnPropertyChangedHandler;
+    }
+}
