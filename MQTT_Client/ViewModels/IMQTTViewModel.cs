@@ -9,11 +9,15 @@ namespace MQTT_Client.ViewModels
         string Message { get; set; }
 
         event PropertyChangedEventHandler PropertyChanged;
+        void Pub(object sender, DoWorkEventArgs e);
+        void Sub(object sender, DoWorkEventArgs e);
+        void ClientPublish();
+        void ClientSubscribe();
 
+        /*        
         string ReadBuffer(string Topic);
         void FillBuffer(string Topic, string Message);
         void InitBuffer();
-        void SubscribeTopic(string Topic);
-        void ClientPublish();
+        */
     }
 }
