@@ -16,15 +16,9 @@
 </p>
 <p>
     <label>
-        Message:
-        <input @bind="ViewModelInject.Message" />
+        <h3>Message: @ViewModelInject.Message</h3> 
     </label>
 </p>
-
-<ul>
-    <li><code>Topic</code>: @ViewModelInject.Topic</li>
-    <li><code>Message</code>: @ViewModelInject.Message</li>
-</ul>
 
 <button class="btn btn-primary" @onclick="ViewModelInject.ClientSubscribe">Subscribe</button>
 
