@@ -3,6 +3,18 @@
 version: '3.4'
 
 services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto-broker
+    network_mode: host 
+    restart: always
+    volumes:
+      - C:\Appl\MQTT\config:/mosquitto/config
+      - C:\Appl\MQTT\data:/mosquitto/data
+      - C:\Appl\MQTT\log:/mosquitto/log
+    ports:
+      - "1883:1883"
+      - "9001:9001"
   mqttclient:
     image: mqttclient
     build:
