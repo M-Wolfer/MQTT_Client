@@ -9,14 +9,21 @@ services:
     network_mode: host 
     restart: always
     volumes:
-      - C:\Appl\MQTT\config:/mosquitto/config
-      - C:\Appl\MQTT\data:/mosquitto/data
-      - C:\Appl\MQTT\log:/mosquitto/log
+      - /opt/mosquitto/config:/mosquitto/config
+      - /opt/mosquitto/data:/mosquitto/data
+      - /opt/mosquitto/log:/mosquitto/log
     ports:
       - "1883:1883"
       - "9001:9001"
+
   mqttclient:
     image: "mqtt-client:latest"
     build:
       context: .
       dockerfile: /Dockerfile
+    environment:
+    - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 5000:80
+      - 5001:443
+    restart: always
