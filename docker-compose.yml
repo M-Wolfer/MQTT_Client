@@ -6,10 +6,9 @@ services:
   mosquitto:
     image: eclipse-mosquitto
     container_name: mosquitto-broker
-    network_mode: host 
     restart: always
     volumes:
-      - /opt/mosquitto/config:/mosquitto/config
+      - C:\Appl\MQTT:/mosquitto/config
       - /opt/mosquitto/data:/mosquitto/data
       - /opt/mosquitto/log:/mosquitto/log
     ports:

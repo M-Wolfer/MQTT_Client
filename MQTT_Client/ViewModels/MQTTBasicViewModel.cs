@@ -29,9 +29,9 @@ namespace MQTT_Client.ViewModels
 
             //define options
             options = new MqttClientOptionsBuilder()
-            //.WithTcpServer("10.10.21.116", 1883) // Port is optional
+            .WithTcpServer("10.10.21.116", 1883) // Port is optional
             //.WithTcpServer("localhost", 1883) // LOCALHOST
-            .WithTcpServer("192.168.178.117", 1883) // HO
+            //.WithTcpServer("192.168.178.117", 1883) // HO
             .Build();
 
             //Create a BGW object and use its eventhandler to connect mqtt client
